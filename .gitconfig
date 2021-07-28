@@ -1,0 +1,9 @@
+[user]
+	name = Jake Brady
+	email = jakebrady5@github.com
+[github]
+	user = jakebrady5
+[push]
+	default = simple
+[credential]
+	helper = osxkeychain
