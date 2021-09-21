@@ -59,10 +59,16 @@ PROMPT_COMMAND='echo -ne "\033]0;${PWD/$HOME/~}:$(parse_git_branch)\007"'
     # Editors
     # Tells your shell that when a program requires various editors, use sublime.
     # The -w flag tells your shell to wait until sublime exits
-    export VISUAL="atom -w"
-    export SVN_EDITOR="atom -w"
-    export GIT_EDITOR="atom -w"
-    export EDITOR="atom -w"
+    if [ ! $CODESPACES ]; then
+      export VISUAL="atom -w"
+      export SVN_EDITOR="atom -w"
+      export GIT_EDITOR="atom -w"
+      export EDITOR="atom -w"
+      export BUNDLER_EDITOR='atom -w'
+      if [ -f `brew --prefix`/etc/bash_completion ]; then
+        . `brew --prefix`/etc/bash_completion
+      fi
+    fi
 
 # Aliases
 # =====================
@@ -89,27 +95,23 @@ PROMPT_COMMAND='echo -ne "\033]0;${PWD/$HOME/~}:$(parse_git_branch)\007"'
 # Postgres
 export PATH=/usr/local/opt/openssl/bin:/Applications/Postgres.app/Contents/Versions/9.4/bin:$PATH
 
-# Final Configurations and Plugins
-# =====================
-  # Git Bash Completion
-  # Will activate bash git completion if installed
-  # via homebrew
-  if [ -f `brew --prefix`/etc/bash_completion ]; then
-    . `brew --prefix`/etc/bash_completion
-  fi
-
-  # RVM
-  # Mandatory loading of RVM into the shell
-  # This must be the last line of your bash_profile always
-  [[ -s "/Users/$USER/.rvm/scripts/rvm" ]] && source "/Users/$USER/.rvm/scripts/rvm"  # This loads RVM into a shell session.
+# RVM
+# Mandatory loading of RVM into the shell
+# This must be the last line of your bash_profile always
+[[ -s "/Users/$USER/.rvm/scripts/rvm" ]] && source "/Users/$USER/.rvm/scripts/rvm"  # This loads RVM into a shell session.
 
 export NVM_DIR="/Users/jake/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
 export PATH="$HOME/.cargo/bin:$PATH"
 
+if [ $CODESPACES ]; then
+  export PATH=/workspaces/github/bin:$PATH
+  export BUNDLER_EDITOR='code'
+  alias taf="TEST_ALL_FEATURES=1 rails test"
+fi
 
-export BUNDLER_EDITOR='atom -w'
+# git config pull.rebase false
 
 batdiff() {
   git diff --name-only --diff-filter=d | xargs bat --diff
