@@ -1,3 +1,5 @@
 #!/bin/bash
 
-source .bash_profile
+if [ ! $CODESPACES ]; then
+  source /workspaces/.codespaces/.persistedshare/dotfiles/.bash_profile
+fi
