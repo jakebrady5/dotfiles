@@ -90,7 +90,9 @@ PROMPT_COMMAND='echo -ne "\033]0;${PWD/$HOME/~}:$(parse_git_branch)\007"'
 
 
 # Case-Insensitive Auto Completion
+if [ ! $CODESPACES ]; then
   bind "set completion-ignore-case on"
+fi
 
 # Postgres
 export PATH=/usr/local/opt/openssl/bin:/Applications/Postgres.app/Contents/Versions/9.4/bin:$PATH

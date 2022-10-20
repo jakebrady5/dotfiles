@@ -1,9 +1,0 @@
-[user]
-	name = Jake Brady
-	email = jakebrady5@github.com
-[github]
-	user = jakebrady5
-[pull]
-	ff = true
-[push]
-	default = simple
