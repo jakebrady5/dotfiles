@@ -49,6 +49,8 @@ PROMPT_COMMAND='echo -ne "\033]0;${PWD/$HOME/~}:$(parse_git_branch)\007"'
     # Those NODE & Python Paths won't break anything even if you
     # don't have NODE or Python installed. Eventually you will and
     # then you don't have to update your bash_profile
+    
+    export HOMEBREW_NO_AUTO_UPDATE=1
 
   # Configurations
 
