@@ -62,11 +62,10 @@ PROMPT_COMMAND='echo -ne "\033]0;${PWD/$HOME/~}:$(parse_git_branch)\007"'
     # Tells your shell that when a program requires various editors, use sublime.
     # The -w flag tells your shell to wait until sublime exits
     if [ ! $CODESPACES ]; then
-      export VISUAL="atom -w"
-      export SVN_EDITOR="atom -w"
-      export GIT_EDITOR="atom -w"
-      export EDITOR="atom -w"
-      export BUNDLER_EDITOR='atom -w'
+      export VISUAL="code -w"
+      export GIT_EDITOR="code -w"
+      export EDITOR="code -w"
+      export BUNDLER_EDITOR='code -w'
       if [ -f `brew --prefix`/etc/bash_completion ]; then
         . `brew --prefix`/etc/bash_completion
       fi
@@ -113,6 +112,8 @@ if [ $CODESPACES ]; then
   export PATH=/workspaces/github/bin:$PATH
   export BUNDLER_EDITOR='code'
   alias taf="TEST_ALL_FEATURES=1 rails test"
+  git config --global user.email "jakebrady5@github.com"
+  git config --global user.name "Jake Brady"
 fi
 
 # git config pull.rebase false
