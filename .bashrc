@@ -111,6 +111,7 @@ export PATH="$HOME/.cargo/bin:$PATH"
 if [ $CODESPACES ]; then
   export PATH=/workspaces/github/bin:$PATH
   export BUNDLER_EDITOR='code'
+  alias git="/usr/local/bin/git"
   alias taf="TEST_ALL_FEATURES=1 rails test"
   git config --global user.email "jakebrady5@github.com"
   git config --global user.name "Jake Brady"
