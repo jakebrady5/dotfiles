@@ -107,6 +107,7 @@ export NVM_DIR="/Users/jake/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
 export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="/usr/local/bin:$PATH"
 
 if [ $CODESPACES ]; then
   export PATH=/workspaces/github/bin:$PATH
